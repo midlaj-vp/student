@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Student</title>
+    <!-- Switched to the clean and professional 'Litera' light theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/litera/bootstrap.min.css">
+    
+    <style>
+        /* Custom styles tailored for the Litera (Light Mode) aesthetic */
+        :root {
+            --primary-color: #4582ec; /* Litera Primary Blue */
+            --cta-color: #4CAF50;    /* Classic Success Green for action */
+            --light-bg: #f8f9fa;     /* Light grey background for soft contrast */
+            --card-bg: #fff;         /* White card background */
+            --text-color: #333;      /* Dark text for readability */
+        }
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Inter', sans-serif;
+            padding: 3rem;
+            color: var(--text-color);
+        }
+        .container {
+            /* Retaining the increased width */
+            max-width: 850px; 
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.75rem; /* Slightly rounded corners */
+            /* Clean, modern shadow */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+            border: 1px solid #dee2e6; /* Light grey border */
+        }
+
+        /* Call-to-Action Button styling (Vibrant Green - Success) */
+        .btn-cta {
+            background-color: var(--cta-color); 
+            border-color: var(--cta-color);
+            transition: all 0.3s ease;
+            color: #fff; 
+            font-weight: bold;
+        }
+        .btn-cta:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.5); 
+        }
+
+        /* INCREASED HEIGHT FOR TEXT INPUTS */
+        .form-control {
+            padding: 0.75rem 1rem; 
+            min-height: calc(3rem + 2px);
+            background-color: #fff; /* White input background */
+            border-color: #ced4da; /* Light grey border */
+            color: var(--text-color); /* Dark text in inputs */
+        }
+
+        /* Styling the form elements rendered by {{ form.as_p }} */
+        form p {
+            margin-bottom: 1.5rem;
+        }
+        form label {
+            font-weight: 600; /* Bolder label text */
+            color: #212529; /* Dark label color for high contrast */
+            display: block; 
+            margin-bottom: 0.5rem;
+        }
+        /* Focus style uses a subtle blue outline */
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(69, 130, 236, 0.4); 
+            border-color: var(--primary-color);
+            background-color: #fff; 
+        }
+        
+        .header-icon {
+            color: #28a745; 
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="container py-5">
+
+    <div class="card p-5"> 
+        <h2 class="mb-5 display-5 text-primary border-bottom border-secondary pb-3">
+            <span class="header-icon">📝</span> Student Registration Form
+        </h2>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                {{ form.as_p }}
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 pt-4 border-top">
+                <a href="{% url 'student_list' %}" class="btn btn-outline-secondary btn-lg">
+                    Back to List
+                </a>
+                <button type="submit" class="btn btn-cta btn-lg shadow-sm">
+                    ✅ Confirm Registration
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
